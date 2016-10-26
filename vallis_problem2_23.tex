@@ -1,0 +1,216 @@
+%
+% Atmospheric and Oceanic Fluid Dynamics.  (Vallis, G. K.)
+%
+%   2016/10/27  基礎理論読書会レジュメ
+%               当番 : 塩尻千里
+%
+% 2007/XX/XX XX XX 修正
+% 2016/10/26 塩尻千里  作成
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Style  Setting             %%%%%%%%
+% フォント: 12point (最大), 片面印刷
+\documentclass[a4j,12pt,openbib,oneside,dvipdfmx]{jarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Package Include            %%%%%%%%
+\usepackage{Dennou6}		% 電脳スタイル ver 6
+\usepackage{ascmac}
+\usepackage{tabularx}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%            PageStyle Setting           %%%%%%%%
+\pagestyle{DAmyheadings}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Title and Auther Setting        %%%%%%%%
+%%
+%%  [ ] はヘッダに書き出される.
+%%  { } は表題 (\maketitle) に書き出される.
+
+\Dtitle{Vallis (2006)}   % 変更不可
+\Dauthor{塩尻千里}            % ゼミ担当者の名前
+\Ddate{2016/10/27}        % ゼミの日時 (毎回変更すること)
+\Dfile{vallis\_problem2\_23.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%   Set Counter (chapter, section etc. ) %%%%%%%%
+%\setcounter{chapter}{2}    % 章番号
+%\setcounter{section}{10}    % 節番号
+%\setcounter{equation}{250}   % 式番号
+%\setcounter{page}{209}     % 必ず開始ページは明記する
+%\setcounter{figure}{0}     % 図番号
+%\setcounter{table}{0}      % 表番号
+%\setcounter{footnote}{0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Counter Output Format           %%%%%%%%
+\def\thechapter{\arabic{chapter}}
+\def\thesection{\arabic{chapter}.\arabic{section}}
+\def\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\def\theequation{\arabic{chapter}.\arabic{equation}}
+\def\thepage{\arabic{page}}
+\def\thefigure{\arabic{chapter}.\arabic{section}.\arabic{figure}}
+\def\thetable{\arabic{chapter}.\arabic{section}.\arabic{table}}
+\def\thefootnote{*\arabic{footnote}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Dennou-Style Definition         %%%%%%%%
+
+%% 改段落時の空行設定
+\Dparskip      % 改段落時に一行空行を入れる
+%\Dnoparskip    % 改段落時に一行空行を入れない
+
+%% 改段落時のインデント設定
+\Dparindent    % 改段落時にインデントする
+%\Dnoparindent  % 改段落時にインデントしない
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Text Start                 %%%%%%%%
+
+\markright{問題
+} %  節の題名を書き込むこと
+
+\begin{document}
+
+%\section*{問題 2.23}
+\def\theequation{\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thepage}{223-\arabic{page}}
+\setcounter{page}{1}
+
+\begin{itembox}[l]{問題 2.23}
+高度座標系における質量保存の式すなわち$D\rho/Dt+\rho\nabla\cdot\bm{v}=0$から始めよう. 連鎖律(もしくはそれ以外)を用いてこれを圧力座標系に変換し, $\nabla_p\cdot\bm{u}+\partial{\omega}/\partial{p}=0$の形の質量保存の式を導出せよ.
+\end{itembox}
+\\
+\textgt{【解答】}\\
+\par
+
+高度座標系における任意の物理量$\phi=\phi(x,y,z,t)$を, $z$が$(x,y,p,t)$の関数であるとして圧力座標系で表すと, $\phi=\phi(x,y,p,t)=\phi(x,y,z(x,y,p,t),t)$である. 圧力面上における$\phi$の$x$偏微分は, 
+\begin{equation}
+  \left(\DP{\phi}{x}\right)_{y,p,t}=\left(\DP{\phi}{x}\right)_{y,z,t}+\left(\DP{\phi}{z}\right)_{x,y,t}\left(\DP{z}{x}\right)_{y,p,t} \label{ha}
+\end{equation}
+と書ける\footnote{導出は付録Aを参照せよ.}. また$\phi$の$z$微分は,
+\begin{equation}
+  \left(\DP{\phi}{z}\right)_{x,y,t}={\left(\DP{\phi}{p}\right)_{x,y,t}}\DP{p}{z} \label{or}
+\end{equation}
+と書ける. いま静水圧平衡の式$\partial{p}/\partial{z}=-\rho{g}$が成り立っているとすると, \eqref{ha},\eqref{or}より,
+\begin{equation}
+  \left(\DP{\phi}{x}\right)_{y,z,t}=\left(\DP{\phi}{x}\right)_{y,p,t}+\rho{g}\left(\DP{\phi}{p}\right)_{x,y,t}\left(\DP{z}{x}\right)_{y,p,t} \label{x}
+\end{equation}
+となる. $y$と$t$の偏微分も同様に書ける. 以下添字を一部省略する. \\
+\par
+次にラグランジュ微分について考える. 高度座標系におけるラグランジュ微分は
+\begin{equation}
+  \frac{D\phi}{Dt}=\DP{\phi}{t}+u\DP{\phi}{x}+v\DP{\phi}{y}+w\DP{\phi}{z}
+\end{equation}
+である. 右辺第一項目から第三項目まで\eqref{x}, 第四項目には\eqref{or}を適用すると,
+\begin{multline}
+  \frac{D\phi}{Dt}=\left\{\left(\DP{\phi}{t}\right)_p+\rho{g}\DP{\phi}{p}\left(\DP{z}{t}\right)_p\right\}+u\left\{\left(\DP{\phi}{x}\right)_p+\rho{g}\DP{\phi}{p}\left(\DP{z}{x}\right)_p\right\}\\
+  +v\left\{\left(\DP{\phi}{y}\right)_p+\rho{g}\DP{\phi}{p}\left(\DP{z}{y}\right)_p\right\}-w\rho{g}\left(\DP{\phi}{p}\right) \label{dp}
+\end{multline}
+と書ける. ここで$\phi$として$p$をとり, $\omega\equiv{Dp/Dt}$と定義すると,
+\begin{equation}
+  \omega=\frac{Dp}{Dt}=\rho{g}\left\{\left(\DP{z}{t}\right)_p+u\left(\DP{z}{x}\right)_p+v\left(\DP{z}{y}\right)_p\right\}-w\rho{g} \label{omega}
+\end{equation}
+となる. \eqref{omega}を用いると\eqref{dp}は
+\begin{equation}
+  \frac{D\phi}{Dt}=\left(\DP{\phi}{t}\right)_p+u\left(\DP{\phi}{x}\right)_p+v\left(\DP{\phi}{y}\right)_p+\omega{\DP{\phi}{p}} \label{dd}
+\end{equation}
+と書ける. これが圧力座標系におけるラグランジュ微分である.\\
+\par
+以上を用いて, 質量保存の式を圧力座標系に変換する. 高度座標系における質量保存の式は,
+\begin{equation}
+  -\frac{1}{\rho}\frac{D\rho}{Dt}=\DP{u}{x}+\DP{v}{y}+\DP{w}{z} \label{mass}
+\end{equation}
+である. \eqref{dd}より,
+\begin{equation}
+  \frac{D\rho}{Dt}=\left(\DP{\rho}{t}\right)_p+u\left(\DP{\rho}{x}\right)_p+v\left(\DP{\rho}{y}\right)_p+\omega{\DP{\rho}{p}} \label{drho}.
+\end{equation}
+\eqref{x}より,
+\begin{equation}
+  \DP{u}{x}=\left(\DP{u}{x}\right)_p+\rho{g}\DP{u}{p}\left(\DP{z}{x}\right)_p , \label{u}
+\end{equation}
+\begin{equation}
+  \DP{v}{y}=\left(\DP{v}{y}\right)_p+\rho{g}\DP{v}{p}\left(\DP{z}{y}\right)_p. \label{v}
+\end{equation}
+$\partial{w}/\partial{z}$については, $\omega$の定義より,
+\begin{equation}
+  w=-\frac{1}{\rho{g}}\omega+\left\{\left(\DP{z}{t}\right)_p+u\left(\DP{z}{x}\right)_p+v\left(\DP{z}{y}\right)_p\right\} \nonumber
+\end{equation}
+なので, 
+\begin{align}
+  \DP{w}{z}&=\DP{w}{p}\DP{p}{z}  \nonumber \\
+  &=\DP{p}{z}\DP{}{p}\left[-\frac{1}{\rho{g}}\omega+\left\{\left(\DP{z}{t}\right)_p+u\left(\DP{z}{x}\right)_p+v\left(\DP{z}{y}\right)_p\right\}\right] \nonumber \\
+        &=\DP{p}{z}\left[-\frac{1}{\rho{g}}\DP{\omega}{p}-\frac{\omega}{g}\DP{}{p}\left(\frac{1}{\rho}\right)+\frac{\partial}{\partial{p}}\left\{\left(\DP{z}{t}\right)_p+u\left(\DP{z}{x}\right)_p+v\left(\DP{z}{y}\right)_p\right\}\right] \nonumber \\
+        &=\DP{\omega}{p}-\frac{\omega}{\rho}\DP{\rho}{p}-\rho{g}\frac{\partial}{\partial{p}}\left\{\left(\DP{z}{t}\right)_p+u\left(\DP{z}{x}\right)_p+v\left(\DP{z}{y}\right)_p\right\} \label{dw}
+\end{align}
+である. \eqref{drho}〜\eqref{dw}を\eqref{mass}に代入すると, 
+\begin{align}
+  &-\frac{1}{\rho}\left\{\left(\DP{\rho}{t}\right)_p+u\left(\DP{\rho}{x}\right)_p+v\left(\DP{\rho}{y}\right)_p+\omega{\DP{\rho}{p}}\right\}\nonumber \\
+  &=\left(\DP{u}{x}\right)_p+\rho{g}\DP{u}{p}\left(\DP{z}{x}\right)_p+\left(\DP{v}{y}\right)_p+\rho{g}\DP{v}{p}\left(\DP{z}{y}\right)_p \nonumber \\
+  &+\DP{\omega}{p}-\frac{\omega}{\rho}\DP{\rho}{p}-\rho{g}\frac{\partial}{\partial{p}}\left\{\left(\DP{z}{t}\right)_p+u\left(\DP{z}{x}\right)_p+v\left(\DP{z}{y}\right)_p\right\} \label{m}
+\end{align}
+となる. 右辺最終項を展開し, 静水圧平衡の式を用いて整理すると,
+\begin{align}
+  &-\rho{g}\frac{\partial}{\partial{p}}\left\{\left(\DP{z}{t}\right)_p+u\left(\DP{z}{x}\right)_p+v\left(\DP{z}{y}\right)_p\right\} \nonumber \\
+  &=-\rho{g}\frac{\partial}{\partial{t}}\DP{z}{p}-\rho{g}\DP{u}{p}\left(\DP{z}{x}\right)_p-\rho{g}u\frac{\partial}{\partial{x}}\DP{z}{p}-\rho{g}\DP{v}{p}\left(\DP{z}{y}\right)_p-\rho{g}v\frac{\partial}{\partial{y}}\DP{z}{p}\nonumber\nonumber \\
+  &=-\frac{1}{\rho}\left(\DP{\rho}{t}\right)_p-\rho{g}\DP{u}{p}\left(\DP{z}{x}\right)_p-\frac{u}{\rho}\left(\DP{\rho}{x}\right)_p-\rho{g}\DP{v}{p}\left(\DP{z}{y}\right)_p-\frac{v}{\rho}\left(\DP{\rho}{y}\right)_p
+\end{align}
+となる. これを\eqref{m}に代入すると, 多くの項が消去され, 
+\begin{equation}
+  \left(\DP{u}{x}\right)_p+\left(\DP{v}{y}\right)_p+\DP{\omega}{p}=0
+\end{equation}
+となる. よって$\bm{u}=(u,v,0)$として, 圧力座標系における質量保存の式,
+\begin{equation}
+  \nabla_p\cdot\bm{u}+\DP{\omega}{p}=0
+\end{equation}
+が導かれた\footnote{
+{\bfseries 参考文献}
+\begin{description}
+  \item {小倉義光, 1978. 気象力学通論. 東京大学出版会, 74-75. }
+\end{description}
+}.
+
+\newpage
+\appendix
+\section*{付録A (1)の導出}
+\markright{付録A} 
+\def\theequation{A.\arabic{equation}}
+\setcounter{equation}{0}
+\par
+ある圧力面での$\phi$の$x$微分を考える. 微分の定義式より,
+\begin{align}
+  \left(\DP{\phi}{x}\right)_p&=\lim_{\Delta{x} \to 0} \frac{\phi(x+\Delta{x},p)-\phi(x,p)}{\Delta{x}} \nonumber \\
+  &=\lim_{\Delta{x} \to 0} \frac{\phi(x+\Delta{x},z+\Delta{z})-\phi(x,z)}{\Delta{x}} \nonumber \\
+  &=\lim_{\Delta{x} \to 0} \frac{\phi(x+\Delta{x},z+\Delta{z})-\phi(x+\Delta{x},z)+\phi(x+\Delta{x},z)-\phi(x,z)}{\Delta{x}} \nonumber \\
+  &=\lim_{\Delta{x} \to 0} \frac{\phi(x+\Delta{x},z+\Delta{z})-\phi(x+\Delta{x},z)}{\Delta{x}} + \lim_{\Delta{x} \to 0} \frac{\phi(x+\Delta{x},z)-\phi(x,z)}{\Delta{x}} \nonumber 
+\end{align}
+と書ける. \\
+\par
+第一項目の分子でテイラー展開を行い, 第二項目を微分に書き換えると, 
+\begin{equation}
+  \left(\DP{\phi}{x}\right)_p=\lim_{\Delta{x} \to 0} \frac{\left[\phi(x+\Delta{x},z)+\left(\DP{\phi}{z}\right)\Delta{z}+\frac{1}{2}\left(\frac{\partial^2 \phi}{\partial z^2} \right)(\Delta{z})^2+\mathcal{O}((\Delta{z})^3) \right]-\phi(x+\Delta{x},z)}{\Delta{x}}+\left(\DP{\phi}{x}\right)_z \nonumber
+\end{equation}
+となる. ここで
+\begin{equation}
+  \Delta{z}=\left(\DP{z}{x}\right)_p\Delta{x} \nonumber
+\end{equation}
+を用いて整理し, 極限をとると, 
+\begin{align}
+  \left(\DP{\phi}{x}\right)_p&=\lim_{\Delta{x} \to 0} \left[\left(\DP{\phi}{z}\right)\left(\DP{z}{x}\right)_p+\frac{1}{2}\left(\frac{\partial^2 \phi}{\partial z^2} \right)\left(\DP{z}{x}\right)_p^2\Delta{x}+\mathcal{O}((\Delta{x})^2) \right]+\left(\DP{\phi}{x}\right)_z \nonumber \\
+  &=\left(\DP{\phi}{z}\right)\left(\DP{z}{x}\right)_p+\left(\DP{\phi}{x}\right)_z  \nonumber
+\end{align}
+となる. よって導けた.
+
+\end{document}
+
