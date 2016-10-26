@@ -1,0 +1,301 @@
+%
+% Atmospheric and Oceanic Fluid Dynamics.  (Vallis, G. K.)
+%
+%   2016/06/16  基礎理論読書会レジュメ
+%               当番 : 塩尻千里
+%
+% 2016/06/16 修正
+% 2016/05/26 塩尻千里  作成
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Style  Setting             %%%%%%%%
+% フォント: 12point (最大), 片面印刷
+\documentclass[a4j,12pt,openbib,oneside,dvipdfmx]{jsbook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Package Include            %%%%%%%%
+\usepackage{Dennou6}		% 電脳スタイル ver 6
+\usepackage{ascmac}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%            PageStyle Setting           %%%%%%%%
+\pagestyle{DAmyheadings}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Title and Auther Setting        %%%%%%%%
+%%
+%%  [ ] はヘッダに書き出される.
+%%  { } は表題 (\maketitle) に書き出される.
+
+\Dtitle{Vallis (2006)}   % 変更不可
+\Dauthor{塩尻千里}            % ゼミ担当者の名前
+\Ddate{2016/06/16}        % ゼミの日時 (毎回変更すること)
+\Dfile{vallis\_20160616.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%   Set Counter (chapter, section etc. ) %%%%%%%%
+\setcounter{chapter}{2}    % 章番号
+\setcounter{section}{10}    % 節番号
+\setcounter{equation}{250}   % 式番号
+\setcounter{page}{209}     % 必ず開始ページは明記する
+\setcounter{figure}{0}     % 図番号
+\setcounter{table}{0}      % 表番号
+\setcounter{footnote}{0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Counter Output Format           %%%%%%%%
+\def\thechapter{\arabic{chapter}}
+\def\thesection{\arabic{chapter}.\arabic{section}}
+\def\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\def\theequation{\arabic{chapter}.\arabic{equation}}
+\def\thepage{\arabic{page}}
+\def\thefigure{\arabic{chapter}.\arabic{section}.\arabic{figure}}
+\def\thetable{\arabic{chapter}.\arabic{section}.\arabic{table}}
+\def\thefootnote{*\arabic{footnote}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Dennou-Style Definition         %%%%%%%%
+
+%% 改段落時の空行設定
+\Dparskip      % 改段落時に一行空行を入れる
+%\Dnoparskip    % 改段落時に一行空行を入れない
+
+%% 改段落時のインデント設定
+\Dparindent    % 改段落時にインデントする
+%\Dnoparindent  % 改段落時にインデントしない
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Text Start                 %%%%%%%%
+\begin{document}
+
+\markright{\arabic{chapter}.\arabic{section}
+重力波} %  節の題名を書き込むこと
+
+\subsubsection{\textgt{静水圧平衡における重力波と対流}}
+
+いま流体が, 静水圧平衡の成り立っているブジネスク方程式を満たすと仮定しよう. 線形化された2次元の運動方程式は, 
+\begin{subequations}
+\begin{gather}
+\frac{\partial u^{\prime}}{\partial t}=-\frac{\partial {\phi}^{\prime}}{\partial x},\ \ \ 0=-\frac{\partial {\phi}^{\prime}}{\partial z}+b^{\prime}, \\ 
+\frac{\partial u^{\prime}}{\partial x}+\frac{\partial w^{\prime}}{\partial z}=0,\ \ \ \frac{\partial b^{\prime}}{\partial t}+w^{\prime}N^2=0,
+\end{gather}
+\end{subequations}
+となる. ここでこれらはそれぞれ水平方向と鉛直方向の運動量方程式, 質量の連続の式, 熱力学方程式である. わずかな代数計算を行うと, 分散関係,
+\begin{equation}
+{\omega}^2=\frac{k^2N^2}{m^2}
+\end{equation}
+が得られる. 振動数と, もし $N^2$ が負ならば成長率は, {\it k/m} $\to$ $\infty$ に伴って発散する. 従って静水圧近似は, 微小な水平方向のスケールに対して非物理的な振る舞いをもたらす(問 2.11 も見よ{\footnote{付録Aを参照せよ.}})
+{\footnote{[原文脚注 11] 大気と海洋における大規模な循環を扱う数値モデルの多くは静水圧近似を行っている. これらのモデルでは, 対流は{\bf パラメタ化}されなければならない; そうでなければ, 対流は最も小さなスケール, つまり数値モデルのグリッドの大きさで, 単に起こるだろう. この非物理的な振る舞いをするモデルは避けられるべきである. もちろん, 非静水圧モデルにおいても, モデルの水平方向の解像度が粗すぎて適切に対流スケールを解像できないならば, やはり対流はパラメタ化されなければならない. 問 2.11 も見よ.}}.\\
+
+\newpage
+\def\theequation{\arabic{chapter}.\arabic{equation}}
+\def\thefootnote{*\arabic{footnote}}
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{chapter}{2}    % 章番号
+\setcounter{section}{10}    % 節番号
+\setcounter{equation}{252}   % 式番号
+
+\section{*理想気体における音響重力波}  
+\markright{\arabic{chapter}.\arabic{section}
+理想気体における音響重力波} %  節の題名を書き込むこと
+
+ここでは地球大気のように密度成層していて, 圧縮性のある流体における波の運動を考えよう. 完全な問題設定は, 複雑かつ有益でない; 我々は等温で静止している大気に議論を特化し, 回転と球体の効果を無視することにするが, それ以外は近似は必要でないだろう. この節では, 揺らぎのない状態を添え字 $0$ で表し, 揺らぎの状態をプライム($'$)で表すことにする; また多くの代数計算の詳細は省くとする. 基本状態は静止しているので, 静水圧平衡にある:
+\begin{equation}
+  \DP{p_0}{z}=-{{\rho}_0}(z)g.\\
+\end{equation}
+\par 
+代数計算を簡単にするために $\it{y}$ 方向の変動を無視すると, 線形化された運動方程式は以下の通りである\footnote{導出は付録Bを参照せよ.}:
+\begin{subequations}
+\begin{align}
+&\it{x 方向の運動量方程式:} &  {\rho_0}{\DP{u^{\prime}}{t}}&=-{\DP{p^{\prime}}{x}} \\
+&\it{z 方向の運動量方程式:} & {{\rho}_0}{\DP{w^{\prime}}{t}}&=-{\DP{p^{\prime}}{z}}-{\rho}^{\prime}g \\
+&\it{質量保存の式:} & \DP{{\rho}^{\prime}}{t}+w^{\prime}{\DP{{\rho}_0}{z}}&=-{{\rho}_0}\left(\DP{u^{\prime}}{x}+\DP{w^{\prime}}{z}\right) \\
+&\it{熱力学方程式:} & \DP{{\theta}^{\prime}}{t}+w^{\prime}{\DP{{\theta}_0}{z}}&=0 \\
+&\it{状態方程式:} & \frac{{\theta}^{\prime}}{{\theta}_0}+\frac{{\rho}^{\prime}}{{\rho}_0}&={\frac{1}{\gamma}}{\frac{p^{\prime}}{p_0}}.
+\end{align}
+等温の基本状態では $T_0$ 一定として $p_0={{\rho}_0}RT_0$ である. このことから, ${\rho}_0={{\rho}_s}e^{-z/H}$ と $p_0={p_s}e^{-z/H}$ を得る. ここで $H=RT_0/g$ である. さらに, ${\theta}=T(p_s/p)^{\kappa}$ を用いると, ${{\theta}_0}={T_0}e^{{\kappa}z/H}$ となり, これより $N^2={\kappa}g/H$ を得る. ここで ${\kappa}=R/c_p$ とした. 23 ページの(1.99)を用いることは, 線形化した熱力学方程式を,
+\begin{equation}
+ \DP{p^{\prime}}{t}-w^{\prime}{\frac{p_0}{H}}=-{\gamma}{p_0}{\left({\DP{u^{\prime}}{x}+\DP{w^{\prime}}{z}}\right)}
+\end{equation}
+\end{subequations}
+に書き換える際にも有用である\footnote{(2.254f)は以下の方法でも導出できる. まず(2.254e)を時間微分し, 二次の微小量を無視する. その式に(2.254c)と(2.254d)を代入し, 本文中にある $\theta_0$ と $\rho_0$ を用いて計算することで導かれる.}.
+\par
+(2.254a)を時間に関して微分し, (2.254f)を用いると,
+\begin{subequations}
+\begin{align}
+  \left( \DP[2]{}{t}-{c_s}^2{\DP[2]{}{x}} \right)u^{\prime}&={c_s}^2{\left(\DP{}{z}-{\frac{1}{{\gamma}H}}\right)}{\DP{}{x}}w^{\prime}\\
+\intertext{が導かれる. ここで, ${c_s}^2=({\partial}p/{\partial}{\rho})_{\eta}={\gamma}RT_0={\gamma}{p_0}/{{\rho}_0}$ は音速の二乗であり, ${\gamma}={c_p}/{c_v}=1/(1-\kappa)$ である\footnotemark. 同様に, (2.254b)を時間に関して微分し, (2.254c)と(2.254f)を用いると,}
+  \left(\DP[2]{}{t}-{c_s}^2{\left[\DP[2]{}{z}-{\frac{1}{H}}{\frac{\partial}{\partial z}}\right]} \right)w^{\prime}&={c_s}^2{\left( \DP{}{z}-\frac{\kappa}{H} \right)}{\DP{u^{\prime}}{x}}
+\end{align}
+\end{subequations}
+が導かれる.
+\footnotetext{原文には, ${c_s}^2=({\partial}p{\slash}{\partial}{\slash}{\rho})_{\eta}$ とあるが正しくは本文の通りである.}
+
+\newpage
+\markright{付録A} %  節の題名を書き込むこと
+
+\appendix
+\section*{付録A  問題 2.11}
+\def\theequation{P2.5}
+\renewcommand{\thepage}{211-\arabic{page}}
+\setcounter{page}{1}
+
+\begin{itembox}[l]{問題 2.11 {\bf 対流とパラメタリゼーション}}
+\def\footnote{}
+(a) 鉛直方向の運動方程式がパラメタ $\alpha$ によって, 
+\begin{equation}
+  {\alpha}^2{\frac{Dw}{Dt}}=-\DP{\phi}{z}+b
+\end{equation}
+と変形されており, 他の方程式は変わらないブジネスク系を考えよう. ( ${\alpha}=0$ ならば, 系は静水圧平衡であり, ${\alpha}=1$ ならば, 系は元のものである.) これらの方程式系を ( 2.10.1 節と同じように,) 静止かつ一定の成層状態について線形化せよ. そして系の分散関係を求め, ${\alpha}=0$ と ${\alpha}=1$ を含む, $\alpha$ の様々な値の分散関係を描け. ${\alpha}>1$ の場合, ${\alpha}=1$ より, 系は極限の振動数に早く近づくことを示せ. \\
+%(b) ${\blacklozenge}$ $N^2<0$ ならば, ${\alpha}>1$ の系における対流は, 一般に ${\alpha}=1$ の系よりも大きなスケールで起こることを論じよ. 拡散もしくは摩擦を運動方程式の右辺に加え, 分散関係を得ることで明白に示せ. 近似を使うことになるかもしれない. 
+\end{itembox}
+\textgt{【解答】}\\
+(a) この問題における基礎方程式は,
+\def\theequation{A.\arabic{equation}}
+\setcounter{equation}{0}
+\begin{equation}
+  {\frac{Du}{Dt}}=-\DP{\phi}{x}, \ \ 
+  {\alpha}^2{\frac{Dw}{Dt}}=-\DP{\phi}{z}+b,
+\end{equation}
+\begin{equation}
+  \DP{u}{x}+\DP{w}{z}=0, \ \ 
+  {\frac{Db}{Dt}}=0,
+\end{equation}
+であり, 順に運動量方程式, 連続の式, 熱力学方程式である. 2.10.1 節で行ったように, 静止かつ一定の成層状態について線形化すると, 
+\begin{equation}
+  {\DP{u^{\prime}}{t}}=-\DP{\phi^{\prime}}{x}, \ \ 
+  {\alpha}^2{\DP{w^{\prime}}{t}}=-\DP{\phi^{\prime}}{z}+b^{\prime},
+\end{equation}
+\begin{equation}
+  \DP{u^{\prime}}{x}+\DP{w^{\prime}}{z}=0, \ \ 
+  \frac{\partial b^{\prime}}{\partial t}+w^{\prime}N^2=0
+\end{equation}
+となる. (2.247)の導出と同様の代数計算を行うと, $w^{\prime}$ に関する一つの方程式
+\begin{equation}
+  {\left[\left({{\alpha}^2{\DP[2]{}{x}}+{\DP[2]{}{z}}}\right)\DP[2]{}{t}+N^2\DP[2]{}{x}\right]}w^{\prime}=0
+  \label{e5}
+\end{equation}
+が得られる. ここで, $w^{\prime}$=\rm{Re}$W\exp{[i(kx+mz-{\omega}t)]}$ を解として導入し, (\ref{e5})に代入して分散関係を求めると, 
+\begin{equation}
+  {\omega}^2={\frac{N^2k^2}{{\alpha}^2k^2+m^2}}={\frac{N^2}{{\alpha}^2+({\frac{m}{k}})^2}}={\frac{N^2({\frac{k}{m}})^2}{{\alpha}^2({\frac{k}{m}})^2+1}}
+  \label{e6}
+\end{equation}
+となる. ${\alpha}=0$ のとき, (2.252)と等しく, 静水圧平衡を仮定した系の分散関係式になる. (\ref{e6})より, 規格化された振動数は, 
+\begin{equation}
+  \frac{\omega}{N}=\pm{\sqrt {\mathstrut {\frac{({\frac{k}{m}})^2}{{\alpha}^2({\frac{k}{m}})^2+1}}}}
+\end{equation}
+である. ${\alpha}$ にいくつか値を代入し, 規格化された振動数を, 規格化された波数の関数として描いたグラフを 図 \ref{graph} に示す. 図より, ${\alpha}>1$ の場合には, ${\alpha}$ の値が大きくなるにつれ, より早く極限の振動数へと近づくことが分かる.\\
+%\footnote{$\alpha$ について考えると, 静水圧の場合と非静水圧の場合とを切り替えるパラメタと捉えられる一方で, アスペクト比とも捉えられる. まず $\alpha$ を単なる切り替えのパラメタと考えると, $\alpha>1$ において, 規格化された振動数は水平波数が大きい極限で 1 に漸近せず, $1/\alpha$ に漸近する. つまり, 流体粒子が鉛直に変位したときブラントバイサラ振動数では振動しない. 一方で, $\alpha$ をアスペクト比と考えると, (A.3)は無次元化された運動量方程式である. よって(A.7)も無次元であり, これに有次元の量を代入すると, 規格化された振動数はすべて 1 に漸近する.}
+
+\def\thefigure{\arabic{figure}}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=100mm]{graph0526.eps}
+  \caption{分散関係} \label{graph}
+\end{figure}
+
+\newpage
+\appendix
+\section*{付録B (2.254)の導出}
+\markright{付録B} 
+\def\theequation{B.\arabic{equation}}
+\setcounter{equation}{0}
+(2.254)は圧縮性流体の支配方程式系を基本状態のまわりで線形近似した方程式系である. 以下導出を行う. 
+\par
+流体は非粘性流体とし, 断熱的に変化し, 理想気体の状態方程式に従うとする. 現象は $x$, $z$ 平面内で起こるとすると, 重力場中に存在する流体の支配方程式系は以下の通りである: 
+\begin{align}
+ & \frac{\mathrm{D}{\Dvect{v}}}{\mathrm{Dt}}=-{{\frac{1}{\rho}}\Dgrad p}-g\Dvect{k},\label{ma}\\
+ & \DP{\rho}{t} +\Ddiv{{\rho}\Dvect v}=0,\label{th}\\
+ & \frac{\mathrm{D\theta}}{\mathrm{Dt}}=0\label{da},\\
+ & \theta=T{\left(\frac{p_{\scalebox{0.5}{R}}}{p} \right)}^\kappa.\label{me}
+\end{align}
+これらは順に運動量方程式, 質量連続の式, 熱力学方程式\footnote{断熱的な流れでは, 温位の定義より温位は保存する. 詳細は 1.6.1 節を参照せよ.}, 温位の定義式\footnote{温位の定義式中の $p_{\scalebox{0.5}{R}}$ は基準圧力である.}である. 
+支配方程式系を線形化するため, 速度場 $\Dvect v$, 圧力 $p$, 密度 $\rho$, 温位 $\theta$ を以下のように基本状態と, 基本状態からの揺らぎの和として表現する\footnote{基本状態を添え字$0$ で表し, 揺らぎの量を添え字プライム($'$)で表す.}:
+\begin{subequations}
+\begin{align}
+  u(x,z,t)&=u^{\prime}(x,z,t),\label{u}\\
+  w(x,z,t)&=w^{\prime}(x,z,t),\label{w}\\
+  p(x,z,t)&=p_0(z)+{p^{\prime}}{(x,z,t)},\label{p}\\
+  \rho(x,z,t)&=\rho_0(z)+{{\rho}^{\prime}}{(x,z,t)},\label{rho}\\
+  \theta(x,z,t)&=\theta_0(z)+{{\theta}^{\prime}}{(x,z,t)}.\label{the}
+\end{align}
+\end{subequations}
+ただし基本状態で流体は静止している. 従って基本状態で静水圧平衡が成り立っており,
+\begin{equation}
+  \DD{p_0}{z}=-{\rho_0}g \label{rhog}
+\end{equation}
+である. また基本状態に比べて揺らぎの量の大きさは非常に小さいと仮定する:
+\begin{subequations}
+\begin{align}
+  {\left|\frac{p^\prime}{p_0}\right|}\ll 1,\\
+  {\left|\frac{\rho^\prime}{\rho_0}\right|}\ll 1,\\
+  {\left|\frac{\theta^\prime}{\theta_0}\right|}\ll 1.
+  \end{align}
+\end{subequations}
+従って, 揺らぎの二次以上の項は無視することにする.
+\begin{itemize}
+\item (2.254a,b)の導出\\
+(\ref{u})〜(\ref{rho})を用いて(\ref{ma})を成分表示すると, 
+\begin{subequations}
+\begin{align}
+  \DP{u^\prime}{t}+u^\prime{\DP{u^\prime}{x}}+w^\prime{\DP{u^\prime}{z}}&=-\frac{1}{\rho_0+\rho^\prime}{\DP{p^\prime}{x}},\label{uu}\\
+  \DP{w^\prime}{t}+u^\prime{\DP{w^\prime}{x}}+w^\prime{\DP{w^\prime}{z}}&=-\frac{1}{\rho_0+\rho^\prime}{\DP{}{z}}{\left(p_0+p^\prime \right)}-g \label{ww}
+\end{align}
+\end{subequations}
+となる. 揺らぎの二次以上の項を無視し, (\ref{rhog})を用いると,
+\begin{subequations}
+\begin{align}
+  \DP{u^\prime}{t}&=-\frac{1}{\rho_0}{\DP{p^\prime}{x}},\label{u3}\\
+  \DP{w^\prime}{t}&=-\frac{1}{\rho_0}\DP{p^\prime}{z}-{\frac{\rho^\prime}{\rho_0}}g \label{w3}
+\end{align}
+\end{subequations}
+となる\footnote{$\chi={\rho^\prime}/{\rho_0}$ としてTaylor展開すると $(1+\chi)^{-1}=1-\chi+\mathcal{O}(\chi^2)$ となる.}. $\rho_0$ を両辺に掛けることで, (2.254a,b)が得られる. 
+\par
+\item (2.254c)の導出\\
+(\ref{th})に(\ref{u}), (\ref{w}), (\ref{rho})を代入し, 二次の微小量を無視すると,
+\begin{equation}
+  \DP{\rho^\prime}{t}+\rho_0{\DP{u^\prime}{x}}+\DP{}{z}\left({\rho_0}{w^\prime}\right)=0
+\end{equation}
+となる. $\rho_0$ が $z$ の関数であることに注意して展開し, 整理すると(2.254c)が得られる.
+\par
+\item (2.254d)の導出\\
+(\ref{da})に(\ref{the})を代入し, 二次の微小量を無視することで得られる.
+\par
+\item (2.254e)の導出\\
+(\ref{me})の $T$ と $\kappa$ を, 理想気体の状態方程式 $p={\rho}RT$ と比熱比 $\gamma=c_p/c_v$ を用いて書き換えると, 
+\begin{equation}
+ \theta={\frac{p_{\scalebox{0.5}{R}}}{{R}\rho}}\left({\frac{p}{p_{\scalebox{0.5}{R}}}}\right)^{\frac{1}{\gamma}} \label{the2}
+\end{equation}
+となる. 両辺対数を取ると, 
+\begin{equation}
+ \ln\theta=-\ln\rho+{\frac{1}{\gamma}}\ln{p}+{\left(1-\frac{1}{\gamma}\right)}\ln{p_{\scalebox{0.5}{R}}}\label{theln}-\ln{R}
+\end{equation}
+となる. (\ref{theln})に(\ref{p}), (\ref{rho}), (\ref{the})を代入して, 二次以上の項を無視する近似を行うと, 
+\begin{equation}
+  \ln{\theta_0}+\frac{\theta^\prime}{\theta_0}=-\left(\ln{\rho_0}+\frac{\rho^\prime}{\rho_0} \right)+{\frac{1}{\gamma}}\left(\ln{p_0}+\frac{p^\prime}{p_0}\right) +\left(1-\frac{1}{\gamma}\right){p_{\scalebox{0.5}{R}}}-\ln{R} \label{the3}
+\end{equation}
+となる\footnote{Taylor展開すると $\ln\left(1+\chi\right)=\chi+\mathcal{O}(\chi^2)$ となる.}. ここで基本状態が満たす式は,
+%\begin{equation}
+%  \theta_0=\frac{p_{\scalebox{0.5}{R}}}{R\rho_0}\left(\frac{p_0}{p_{\scalebox{0.5}{R}}}\right)^{\frac{1}{\gamma}}
+%\end{equation}
+%より, 両辺対数を取ると,
+\begin{equation}
+  \ln{\theta_0}={\frac{1}{\gamma}}\ln{p_0}-\ln{\rho_0}+\left(1-\frac{1}{\gamma}\right){p_{\scalebox{0.5}{R}}}-\ln{R}
+\end{equation}
+なので, (\ref{the3})からこれを差し引いて, 
+\begin{equation}
+  \frac{\theta^\prime}{\theta_0}={\frac{1}{\gamma}}{\frac{p^\prime}{p_0}}-\frac{\rho^\prime}{\rho_0}
+\end{equation}
+が得られる. 移項を行えば, (2.254e)となる.
+\end{itemize}
+\end{document}
+
+

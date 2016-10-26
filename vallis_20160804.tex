@@ -1,0 +1,158 @@
+%
+% Atmospheric and Oceanic Fluid Dynamics.  (Vallis, G. K.)
+%
+%   2016/08/12  基礎理論読書会レジュメ
+%               当番 : 塩尻千里
+%
+% 2016/08/12  修正
+% 2016/08/04  作成
+%
+% 日付を変更すること
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Style  Setting             %%%%%%%%
+% フォント: 12point (最大), 片面印刷
+\documentclass[a4j,12pt,openbib,oneside,dvipdfmx]{jreport}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Package Include            %%%%%%%%
+\usepackage{Dennou6}		% 電脳スタイル ver 6
+\usepackage{ascmac}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%            PageStyle Setting           %%%%%%%%
+\pagestyle{DAmyheadings}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Title and Auther Setting        %%%%%%%%
+%%
+%%  [ ] はヘッダに書き出される.
+%%  { } は表題 (\maketitle) に書き出される.
+
+\Dtitle{Vallis (2006)}   % 変更不可
+\Dauthor{塩尻千里}       % ゼミ担当者の名前
+\Ddate{2016/09/01}      % ゼミの日時 (毎回変更すること)
+\Dfile{vallis\_20160804.tex}  %file名
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Counter Output Format           %%%%%%%%
+\def\thechapter{\arabic{chapter}}
+\def\thesection{\arabic{chapter}.\arabic{section}}
+\def\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\def\theequation{\arabic{chapter}.\arabic{equation}}
+\def\thepage{\arabic{page}}
+\def\thefigure{\arabic{chapter}.\arabic{figure}}
+\def\thetable{\arabic{chapter}.\arabic{section}.\arabic{table}}
+\def\thefootnote{*\arabic{footnote}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%   Set Counter (chapter, section etc. ) %%%%%%%%
+\setcounter{chapter}{2}    % 章番号
+\setcounter{section}{12}    % 節番号
+\setcounter{subsection}{3}    % 節番号
+\setcounter{equation}{310}   % 式番号
+\setcounter{page}{234}     % 必ず開始ページは明記する
+\setcounter{figure}{13}     % 図番号
+\setcounter{table}{0}      % 表番号
+\setcounter{footnote}{0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Dennou-Style Definition         %%%%%%%%
+
+%% 改段落時の空行設定
+\Dparskip      % 改段落時に一行空行を入れる
+%\Dnoparskip    % 改段落時に一行空行を入れない
+
+%% 改段落時のインデント設定
+\Dparindent    % 改段落時にインデントする
+%\Dnoparindent  % 改段落時にインデントしない
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Text Start                 %%%%%%%%
+\begin{document}
+	
+\subsection{明確な解. I\hspace{-.1em}I: 海洋上層}      % 節の始めからの場合はこのコマンドを使用する
+\markright{\arabic{chapter}.\arabic{section}
+エクマン層} %  節の題名を書き込むこと
+
+\subsubsection{\textgt{境界条件と解}}
+
+風は海洋上層に応力を与え, そしてエクマン層はこの応力を海洋の内部に伝達する効果がある. 従って, 適切な境界条件は以下の通りである:
+\begin{subequations}
+\begin{align}
+  &\rm{at} \ \it{z}=\rm{0} \ \it{:}& \ \ A\DP{u}{z}={\tilde{\tau}}^x, \ \ & A\DP{v}{z}={\tilde{\tau}}^y \ \ &\it{(既知の表面応力)}\\
+  &\rm{as} \ \it{z}\to-\infty \ \it{:}& \ \ u=u_{g}, \ \ & v=v_{g} \ \ &\it{(内部領域の地衡流)}
+\end{align}
+\end{subequations}
+ここで $\tilde\tau$ は海面における既知の(運動学的な)風応力である. (2.311)のもとでの(2.297a)の解は, 前回と同じ方法で見つけられ,
+\begin{equation}
+  u=u_g + \frac{\sqrt2}{fd}e^{z/d}[{\tilde\tau}^x\cos(z/d-\pi/4)-{\tilde\tau}^y\sin(z/d-\pi/4)]
+\end{equation}
+と
+\begin{equation}
+  v=v_g + \frac{\sqrt2}{fd}e^{z/d}[{\tilde\tau}^x\sin(z/d-\pi/4)+{\tilde\tau}^y\cos(z/d-\pi/4)]
+\end{equation}
+となる.
+\par
+境界層補正は, 与えられた表面応力のみに依存し, 内部領域の流れには依存しないことに注意せよ. このことは選ばれた境界条件の種類の結果である. それは応力がかかっていない場合には境界層補正がゼロだからである. このとき, 内部領域の流れは, 上端表面における, 勾配を指定する境界条件を既に満たしている\footnote{
+  応力がかかっていない場合に, 解(2.312)と(2.313)が境界条件(2.311a)を満たすことを示す.\\
+  ${\tilde\tau}^x={\tilde\tau}^y=0$ より, 境界条件(2.311a)は
+    \begin{equation}
+      A\DP{u}{z}=0, \ \ A\DP{v}{z}=0 \nonumber
+    \end{equation}
+  である. 一方, 解はそれぞれ
+    \begin{equation}
+      u=u_g, \ \ v=v_g \nonumber
+    \end{equation}
+  である. $u_g$ と $v_g$ は定数より,
+    \begin{equation}
+      \DP{u}{z}=0, \ \ \DP{v}{z}=0 \nonumber
+    \end{equation}
+  である. よって応力がかかっていない場合の解は上端表面における境界条件を満たす.
+  }. 下層の境界層と同様に, 解の速度ベクトルは内部に下るにつれ減衰するらせんを描く(図 2.14 を見よ. 南半球の様子が描かれている).\\
+\newpage
+\clearpage
+\begin{figure}[h]
+  \includegraphics[width=20mm, bb=0 0 134 124]{214_xyz.jpg}
+\end{figure}
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=80mm, bb=0 0 587 437]{214.jpg}
+  \caption{南半球の海洋において風応力によって引き起こされる理想的なエクマンらせん. 北半球のらせんは鉛直面でこの図を反転させたものになるだろう. このように見事ならせんは, 現実の海洋ではめったに観察されない. 正味の輸送は風向きに対して垂直であり, 摩擦の詳細な形式に依存しない. 表面の流れの角度はニュートン粘性の場合にのみ風向きに対して $45^\circ$ を成す.}
+\end{figure}
+\newpage
+\subsubsection{輸送, 表面の流れと鉛直方向の速度}
+表面応力によって引き起こされる輸送は(2.312)と(2.313)を表面から $-\infty$ まで積分することで得られる. 我々は,
+\begin{equation}
+  U=\int_{-\infty}^0(u-u_g)\,dz=\frac{{\tilde\tau}^y}{f}, \ \ V=\int_{-\infty}^0(v-v_g)\,dz=-\frac{{\tilde\tau}^x}{f}
+\end{equation}
+であることが明確に分かる. より一般的な考察からあらかじめ注意していたように, これは非地衡流の輸送が風応力に対して垂直であることを示している. 風応力が東向きの場合を考えよう. つまりこの場合 ${\tilde\tau}^y=0$ であり, 解は即座に,
+\begin{equation}
+  u(0)-u_g={\tilde\tau}^x/fd, \ \ v(0)-v_g=-{\tilde\tau}^x/fd
+\end{equation}
+である. 従って $x$, $y$ 方向における摩擦に伴う流れの大きさは互いに等しい. そして非地衡流は風向きに対して $45^\circ$ 右を向いている($f>0$ とする). この結果は摩擦のパラメタ化の形式に依存するが, 粘性の大きさには依存しない.
+\par
+エクマン層の端においては鉛直方向の速度は(2.296)で与えられ, 従って鉛直方向の速度は風応力の回転に比例する. ((2.296)の右辺第二項は地衡流の発散による鉛直方向の速度であり, それは通常第一項より十分小さい.) エクマン層の端における鉛直方向の速度の生成は, エクマン層において最も重要な効果の一つである. 特に大規模循環に関してそうである. なぜならそれは表面のフラックスが内部に伝達されるための効率的な手段を与えるからである(図 2.15 を見よ).
+\newpage
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=100mm, bb=0 0 701 465]{215.jpg}
+  \caption{上方と下方のエクマン層. 海洋における上方のエクマン層は第一に風応力がかかることで引き起こされる. 大気や海洋における下方のエクマン層は多くの場合, 内部領域の地衡流の速度と固体底面との相互作用の結果として生じる. 図の上部が示すのは, 風応力が与えられた結果として生じたエクマン`パンピング'の鉛直方向の速度であり, 図の下部が示すのは, 内部領域の地衡流の結果として生じたエクマンパンピングの速度である.}
+\end{figure}
+\newpage
+\subsection{エクマン層の観測}
+エクマン層, そしてとりわけエクマンらせんは, 海洋もしくは大気のどちらにおいても, 一般に観測がとても困難である. その理由は, 理論に含まれていない現象が存在していることと, 特に海洋において, ベクトルの速度分布を実際に測定することが技術的に難しいこととの両方である. エクマン層の理論は, 成層の効果もしくは慣性波や重力波(2.10 節を見よ)の効果を考慮に入れていない. また対流もしくは浮力が引き起こす乱流も考慮していない. 重力波が存在するならば, 瞬間的な流れは非地衡流であるだろう. 従って地衡流を抽出するためには時間平均をする必要があるだろう. 強い対流があるならば, エクマンらせんを導く際に用いられる単純な渦粘性のパラメタ化は, 妥当でないだろう\footnote{単純な渦粘性のパラメタ化は, シアー不安定を想定したものである. 強い対流がある場合には, その混合により単純な渦粘性のパラメタ化は不適当である.}. そしてエクマンらせんのプロファイルは大気もしくは海洋のどちらにおいても観測されることは期待されない.
+%\par
+%大気において, 対流が中立な場合, エクマンらせんのプロファイルはしばしば定性的に認識され得る. 対流が不安定な場合, エクマンらせんのプロファイルは一般に観測されない. しかしそれにも関わらず, 理論に矛盾することなく, 流れは高圧から低圧へと等圧線を横切る. (多くの目的にとって, いかなる場合においてもエクマン層の積分特性は最も重要である.) 海洋において, 約 1980 年頃から向上し改良された観測機器は, 深さに伴うベクトルの流れを観測すること, 流れを平均すること, 流れと表面を吹く風とを相互に関係づけることを可能にした. そして多くの観測結果は概して, エクマン力学と矛盾しないことが明らかになってきた. 観測結果と理論の間にはいくつか相違がある. そしてこれらは(らせんを浅く, 薄くしてしまう)成層の効果や, エクマンらせんと乱流の相互作用(と渦拡散のパラメタ化の欠陥)が原因とされ得る. これらの相違にも関わらず, エクマン層の理論は依然として, 注目に値し, 地球流体力学の基礎であり続けている.
+
+\end{document}
+

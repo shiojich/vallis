@@ -1,0 +1,151 @@
+%
+% Atmospheric and Oceanic Fluid Dynamics.  (Vallis, G. K.)
+%
+%   2016/10/06  基礎理論読書会レジュメ
+%               当番 : 塩尻千里
+%
+% 2007/XX/XX XX XX 修正
+% 2016/10/06 塩尻千里  作成
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Style  Setting             %%%%%%%%
+% フォント: 12point (最大), 片面印刷
+\documentclass[a4j,12pt,openbib,oneside,dvipdfmx]{jarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Package Include            %%%%%%%%
+\usepackage{Dennou6}		% 電脳スタイル ver 6
+\usepackage{ascmac}
+\usepackage{tabularx}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%            PageStyle Setting           %%%%%%%%
+\pagestyle{DAmyheadings}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Title and Auther Setting        %%%%%%%%
+%%
+%%  [ ] はヘッダに書き出される.
+%%  { } は表題 (\maketitle) に書き出される.
+
+\Dtitle{Vallis (2006)}   % 変更不可
+\Dauthor{塩尻千里}            % ゼミ担当者の名前
+\Ddate{2016/10/06}        % ゼミの日時 (毎回変更すること)
+\Dfile{vallis\_problem2\_23.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%   Set Counter (chapter, section etc. ) %%%%%%%%
+%\setcounter{chapter}{2}    % 章番号
+%\setcounter{section}{10}    % 節番号
+%\setcounter{equation}{250}   % 式番号
+%\setcounter{page}{209}     % 必ず開始ページは明記する
+%\setcounter{figure}{0}     % 図番号
+%\setcounter{table}{0}      % 表番号
+%\setcounter{footnote}{0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Counter Output Format           %%%%%%%%
+\def\thechapter{\arabic{chapter}}
+\def\thesection{\arabic{chapter}.\arabic{section}}
+\def\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\def\theequation{\arabic{chapter}.\arabic{equation}}
+\def\thepage{\arabic{page}}
+\def\thefigure{\arabic{chapter}.\arabic{section}.\arabic{figure}}
+\def\thetable{\arabic{chapter}.\arabic{section}.\arabic{table}}
+\def\thefootnote{*\arabic{footnote}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Dennou-Style Definition         %%%%%%%%
+
+%% 改段落時の空行設定
+\Dparskip      % 改段落時に一行空行を入れる
+%\Dnoparskip    % 改段落時に一行空行を入れない
+
+%% 改段落時のインデント設定
+\Dparindent    % 改段落時にインデントする
+%\Dnoparindent  % 改段落時にインデントしない
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Text Start                 %%%%%%%%
+
+\markright{問題
+} %  節の題名を書き込むこと
+
+\begin{document}
+
+%\section*{問題 2.23}
+\def\theequation{\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thepage}{223-\arabic{page}}
+\setcounter{page}{1}
+
+\begin{itembox}[l]{問題 2.23}
+高度座標系における質量保存の式すなわち$D\rho/Dt+\rho\nabla\cdot\bm{v}=0$から始めよう. 連鎖律(もしくはそれ以外)を用いてこれを圧力座標系に変形し, $\nabla_p\cdot\bm{u}+\partial{\omega}/\partial{p}=0$の形の質量保存の式を導出せよ.
+\end{itembox}
+\\
+\textgt{【別解】}\\
+\par
+高度座標系における質量保存の式
+\begin{equation}
+  -\frac{1}{\rho}\frac{D\rho}{Dt}=\DP{u}{x}+\DP{v}{y}+\DP{w}{z} \label{mas}
+\end{equation}
+から始める.
+密度を$\rho$として, ある微小体積$\delta{V}=\delta{x}\delta{y}\delta{z}$の流体を考える. 質量保存より,
+\begin{equation}
+  \frac{D}{Dt}(\rho\delta{V})=0 \label{mass}
+\end{equation}
+である. いま静水圧の関係 $\rho\delta{z}=-(1/g)\delta{p}$を用いると,
+\begin{equation}
+  \frac{D}{Dt}(\delta{x}\delta{y}\rho\delta{z})=0
+\end{equation}
+より,
+\begin{equation}
+  \frac{D}{Dt}(\delta{x}\delta{y}\delta{p})=0 \label{r}
+\end{equation}
+と書ける. \\
+%\eqref{mass}を微分し移項すると, 
+%\begin{equation}
+%  \frac{D\rho}{Dt}=-\frac{\rho}{\delta{V}}\frac{D\delta{V}}{Dt} \label{or}
+%\end{equation}
+%である. 
+%一方, (1.15)より, 
+%\begin{equation}
+%  \frac{D}{Dt}(\delta{x}\delta{y}\delta{p})=(\delta{x}\delta{y}\delta{p})\nabla\cdot\bm{v}
+%\end{equation}
+%と書ける. \eqref{r}より,
+%\begin{equation}
+%  \nabla\cdot\bm{v}=0
+%\end{equation}
+%である. 
+%\eqref{or}の右辺について注目すると, 
+\par
+両辺に$\delta{x}\delta{y}\delta{p}$をかけて, 変形すると,
+\begin{subequations}
+\begin{align}
+  \frac{1}{\delta{x}\delta{y}\delta{p}}\frac{D{(\delta{x}\delta{y}\delta{p})}}{Dt}&=\frac{1}{\delta{x}}\frac{D\delta{x}}{Dt}+\frac{1}{\delta{y}}\frac{D\delta{y}}{Dt}+\frac{1}{\delta{p}}\frac{D\delta{p}}{Dt}\\ \nonumber
+  &=\frac{\delta{u}}{\delta{x}}+\frac{\delta{v}}{\delta{y}}+\frac{\delta\omega}{\delta{p}}\\ \nonumber
+  &=0 \nonumber
+\end{align}
+\end{subequations}
+となる. ここで$\omega=Dp/Dt$である. これの極限をとると,
+\begin{equation}
+  \lim_{\substack{\delta{x} \to \infty \\  \delta{y} \to \infty \\ \delta{p} \to \infty}} \frac{1}{\delta{x}\delta{y}\delta{p}}\frac{D{(\delta{x}\delta{y}\delta{p})}}{Dt}=\DP{u}{x}+\DP{v}{y}+\DP{\omega}{p}=0
+\end{equation}
+となる. よって$\bm{u}=(u,v,0)$として,
+\begin{equation}
+  \nabla_p\cdot\bm{u}+\DP{\omega}{p}=0
+\end{equation}
+が導かれた.
+
+
+\end{document}
+

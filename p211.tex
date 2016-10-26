@@ -1,0 +1,147 @@
+
+%
+% Atmospheric and Oceanic Fluid Dynamics.  (Vallis, G. K.)
+%
+%   2016/05/26  基礎理論読書会レジュメ
+%               当番 : 塩尻千里
+%
+% 2007/XX/XX XX XX 修正
+% 2016/05/26 塩尻千里  作成
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Style  Setting             %%%%%%%%
+% フォント: 12point (最大), 片面印刷
+\documentclass[a4j,12pt,openbib,oneside,dvipdfmx]{jreport}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Package Include            %%%%%%%%
+\usepackage{Dennou6}		% 電脳スタイル ver 6
+\usepackage{ascmac}
+\usepackage{tabularx}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%            PageStyle Setting           %%%%%%%%
+\pagestyle{DAmyheadings}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Title and Auther Setting        %%%%%%%%
+%%
+%%  [ ] はヘッダに書き出される.
+%%  { } は表題 (\maketitle) に書き出される.
+
+\Dtitle{Vallis (2006)}   % 変更不可
+\Dauthor{塩尻千里}            % ゼミ担当者の名前
+\Ddate{2016/05/26}        % ゼミの日時 (毎回変更すること)
+\Dfile{vallis\_20160526.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%   Set Counter (chapter, section etc. ) %%%%%%%%
+%\setcounter{chapter}{2}    % 章番号
+%\setcounter{section}{10}    % 節番号
+%\setcounter{equation}{250}   % 式番号
+%\setcounter{page}{209}     % 必ず開始ページは明記する
+%\setcounter{figure}{0}     % 図番号
+%\setcounter{table}{0}      % 表番号
+%\setcounter{footnote}{0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Counter Output Format           %%%%%%%%
+\def\thechapter{\arabic{chapter}}
+\def\thesection{\arabic{chapter}.\arabic{section}}
+\def\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\def\theequation{\arabic{chapter}.\arabic{equation}}
+\def\thepage{\arabic{page}}
+\def\thefigure{\arabic{chapter}.\arabic{section}.\arabic{figure}}
+\def\thetable{\arabic{chapter}.\arabic{section}.\arabic{table}}
+\def\thefootnote{*\arabic{footnote}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Dennou-Style Definition         %%%%%%%%
+
+%% 改段落時の空行設定
+\Dparskip      % 改段落時に一行空行を入れる
+%\Dnoparskip    % 改段落時に一行空行を入れない
+
+%% 改段落時のインデント設定
+\Dparindent    % 改段落時にインデントする
+%\Dnoparindent  % 改段落時にインデントしない
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Text Start                 %%%%%%%%
+\begin{document}
+
+%\chapter{摩擦と粘性流}    % 章の始めからの場合はこのコマンドを使用する
+
+%\section{}      % 節の始めからの場合はこのコマンドを使用する
+
+\markright{問題
+} %  節の題名を書き込むこと
+
+\appendix
+\section*{付録  問題 2.11}
+\setcounter{equation}{3}
+\def\theequation{{P2}.4.\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thepage}{210-\arabic{page}}
+\setcounter{page}{1}
+
+\begin{itembox}[l]{問題 2.11 対流とパラメタリゼーション}
+(a) ブジネスク系を考えよう. 鉛直方向の運動方程式は, 
+\begin{eqnarray}
+  {\alpha}^2{\frac{Dw}{Dt}}=-\DP{\phi}{z}+b,
+\end{eqnarray}
+を満たすパラメータ $\alpha$ によって変化し, 他の方程式は変わらない. ( ${\alpha}=0$ ならば, 系は静水圧平衡であり, ${\alpha}=1$ ならば, 系は非静水圧である.) これらの方程式系を 2.10.1 節と同じように, 静止状態と一定の成層状態とについて線形化せよ. そして系の分散関係を求め, ${\alpha}=0$ と ${\alpha}=1$ を含む, $\alpha$ の異なる値の解を描け. さらに ${\alpha}>1$ の場合, ${\alpha}=1$ より, 系は極限の振動数に早く近づくことを示せ. \\
+(b) ${\blacklozenge}$ $N^2<0$ ならば, ${\alpha}>1$ の系での対流は, 一般に ${\alpha}=1$ の系よりも大きなスケールで起こることを論じよ. 拡散や摩擦を運動方程式の右辺に加え, 分散関係を得ることで明白に示せ. 近似を使うことになるかもしれない. 
+\end{itembox}
+\\
+\textgt{【解答】}\\
+(a) この問題における基礎方程式は,
+\begin{eqnarray}
+  {\frac{Du}{Dt}}=-\DP{\phi}{x}, \ \ 
+  {\alpha}^2{\frac{Dw}{Dt}}=-\DP{\phi}{z}+b,
+\end{eqnarray}
+\begin{eqnarray}
+  \DP{u}{x}+\DP{w}{z}=0, \ \ 
+  {\frac{Db}{Dt}}=0,
+\end{eqnarray}
+であり, 順に運動量方程式, 連続の式, 熱力学方程式である. 2.10.1 節で行ったように線形化し, 二次の微小量を無視すると, 
+\begin{eqnarray}
+  {\DP{u^{\prime}}{t}}=-\DP{\phi^{\prime}}{x}, \ \ 
+  {\alpha}^2{\DP{w^{\prime}}{t}}=-\DP{\phi^{\prime}}{z}+b^{\prime},
+\end{eqnarray}
+\begin{eqnarray}
+  \DP{u^{\prime}}{x}+\DP{w^{\prime}}{z}=0, \ \ 
+  \frac{\partial b^{\prime}}{\partial t}+w^{\prime}N^2=0,
+\end{eqnarray}
+となる. (2.247) の導出と同様の代数計算を行うと, $w^{\prime}$ に関する一つの方程式
+\begin{eqnarray}
+  \left(N^2{\frac{\partial^2}{\partial^2 x}}+{\alpha}^2{\frac{\partial^2}{\partial^2 t}}{\frac{\partial^2}{\partial^2 x}}+{\frac{\partial^2}{\partial^2 t}}{\frac{\partial^2}{\partial^2 x}}\right)w^{\prime}=0,
+\end{eqnarray}
+が得られる.\\
+ここで, $w^{\prime}=ReW[\exp{i(kx+mz-{\omega}t)]}$ を解として導入し, (P2.4.5) に代入して分散関係を求めると, 
+\begin{eqnarray}
+  {\omega}^2={\frac{N^2k^2}{{\alpha}^2k^2+m^2}}={\frac{N^2}{{\alpha}^2+({\frac{m}{k}})^2}}.
+\end{eqnarray}
+${\alpha}=0$ のとき, (2.252) と等しく, 静水圧平衡が成り立っている. \\
+(P2.4.6) より, 規格化された振動数は, 
+\begin{eqnarray}
+  \frac{\omega}{N}=\sqrt {\mathstrut {\frac{({\frac{k}{m}})^2}{{\alpha}^2({\frac{k}{m}})^2+1}}}.
+\end{eqnarray}
+${\alpha}$ に異なる値を代入し, 規格化された振動数を, 規格化された波数の関数として描いたグラフが 図\ref{graph} である. この図より, ${\alpha}>1$ の場合には, ${\alpha}$ の値が大きくなるにつれ, より早く極限へと近づくことが分かる. \\
+\def\thefigure{\arabic{figure}}
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=100mm]{graph0526.eps}
+  \caption{分散関係} \label{graph}
+\end{figure}
+
+\end{document}
+

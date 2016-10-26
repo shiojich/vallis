@@ -1,0 +1,155 @@
+
+% Atmospheric and Oceanic Fluid Dynamics.  (Vallis, G. K.)
+%
+%   2016/09/01  基礎理論読書会レジュメ
+%               当番 : 塩尻千里
+%
+% 2007/XX/XX XX XX 修正
+% 2016/09/15 塩尻千里  作成
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Style  Setting             %%%%%%%%
+% フォント: 12point (最大), 片面印刷
+\documentclass[a4j,12pt,openbib,oneside,dvipdfmx]{jreport}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Package Include            %%%%%%%%
+\usepackage{Dennou6}		% 電脳スタイル ver 6
+\usepackage{ascmac}
+\usepackage{tabularx}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%            PageStyle Setting           %%%%%%%%
+\pagestyle{DAmyheadings}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Title and Auther Setting        %%%%%%%%
+%%
+%%  [ ] はヘッダに書き出される.
+%%  { } は表題 (\maketitle) に書き出される.
+
+\Dtitle{Vallis (2006)}   % 変更不可
+\Dauthor{塩尻千里}            % ゼミ担当者の名前
+\Ddate{2016/09/15}        % ゼミの日時 (毎回変更すること)
+\Dfile{vallis\_problem2\_7.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%   Set Counter (chapter, section etc. ) %%%%%%%%
+%\setcounter{chapter}{2}    % 章番号
+%\setcounter{section}{10}    % 節番号
+%\setcounter{equation}{250}   % 式番号
+%\setcounter{page}{209}     % 必ず開始ページは明記する
+%\setcounter{figure}{0}     % 図番号
+%\setcounter{table}{0}      % 表番号
+%\setcounter{footnote}{0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Counter Output Format           %%%%%%%%
+\def\thechapter{\arabic{chapter}}
+\def\thesection{\arabic{chapter}.\arabic{section}}
+\def\thesubsection{\arabic{chapter}.\arabic{section}.\arabic{subsection}}
+\def\theequation{\arabic{chapter}.\arabic{equation}}
+\def\thepage{\arabic{page}}
+\def\thefigure{\arabic{chapter}.\arabic{section}.\arabic{figure}}
+\def\thetable{\arabic{chapter}.\arabic{section}.\arabic{table}}
+\def\thefootnote{*\arabic{footnote}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%        Dennou-Style Definition         %%%%%%%%
+
+%% 改段落時の空行設定
+\Dparskip      % 改段落時に一行空行を入れる
+%\Dnoparskip    % 改段落時に一行空行を入れない
+
+%% 改段落時のインデント設定
+\Dparindent    % 改段落時にインデントする
+%\Dnoparindent  % 改段落時にインデントしない
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%             Text Start                 %%%%%%%%
+\begin{document}
+
+%\chapter{摩擦と粘性流}    % 章の始めからの場合はこのコマンドを使用する
+
+%\section{}      % 節の始めからの場合はこのコマンドを使用する
+
+\markright{問題
+} %  節の題名を書き込むこと
+
+%\section*{問題 2.7}
+\setcounter{equation}{0}
+\def\theequation{\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand{\thepage}{207-\arabic{page}}
+\setcounter{page}{1}
+
+\begin{itembox}[l]{問題 2.7}
+ニュートン重力の方向と実効重力の方向の間の角度が最大となる緯度は何度か? もしあるならば, その角度がゼロとなるのは何度か?
+\end{itembox}
+\\
+\textgt{【解答】}\\
+\par
+いま地球が半径$a$, 一定の角速度$\Omega$で自転する密度が一様な質量$M$の剛体球であると仮定する. 地球上のある緯度$\phi$, 高度$z$に存在する流体粒子が静止していたとする. 
+このとき流体粒子に働く力は, 万有引力と遠心力である. この二つの力の和が実効重力である. 実効重力を$\bm{g}$で表すと,
+\begin{equation}
+  \bm{g}\equiv-\frac{GM}{(a+z)^2}\bm{e}_r+{\Omega}^2{(a+z)}\cos{\phi}\bm{e}_\rho \label{g}
+\end{equation}
+と書ける. ここで$G$は万有引力定数, $\bm{e}_r$は球座標系における動径方向の単位ベクトル, $\bm{e}_\rho$は円筒座標系における動径方向の単位ベクトルである. $\bm{e}_\rho$は球座標系における動径方向の単位ベクトル$\bm{e}_r$と緯度方向の単位ベクトル$\bm{e}_\phi$とを用いて,
+\begin{equation}
+  \bm{e}_\rho=\cos{\phi}\bm{e}_r-\sin{\phi}\bm{e}_\phi \label{erho}
+\end{equation}
+と表せる. 簡単のため, 高度$z=0$のときを考える. このときのニュートン重力の大きさを$g^*$とすると, 
+\begin{equation}
+  g^*=\frac{GM}{a^2} \label{gg}
+\end{equation}
+である. $\eqref{erho}$と$\eqref{gg}$を用いると実効重力$\eqref{g}$は
+\begin{equation}
+  \bm{g}=(-g^*+{\Omega^2}a\cos^2{\phi})\bm{e}_r-{\Omega^2}a\cos{\phi}\sin{\phi}\bm{e}_\phi \label{gj}
+\end{equation}
+と書ける\footnote{
+{\bfseries 参考文献}
+\begin{description}
+  \item {岩山隆寛, 2014, 地球惑星物理学基礎 I 講義ノート, 第8章}
+\end{description}
+}.
+
+\par
+以下, ニュートン重力の方向と実効重力の方向の間の角度を$\delta$として, この角度が最大もしくはゼロの値をとる緯度$\phi$について考える. $\delta$は内積から求めることができ,
+\begin{equation}
+  \cos{\delta}=\frac{\bm{g}^*\cdot\bm{g}}{g^*\left|\bm{g}\right|} \label{cos}
+\end{equation}
+である. ただし$\bm{g}^*=-g^*\bm{e}_r$である. \eqref{gj}と\eqref{cos}より,
+\begin{equation}
+  \delta=\cos^{-1}{\frac{g^*-{\Omega^2}a\cos^2{\phi}}{\sqrt{(-g^*+\Omega^2a\cos^2{\phi})^2+(\Omega^2a\cos{\phi}\sin{\phi})^2}}} \label{delta}\\
+\end{equation}
+と書ける. 整理すると,
+\begin{equation}
+  \delta=\cos^{-1}{\frac{1}{\sqrt{1+\left(\frac{\sin{2\phi}}{(2g^*/\Omega^2a)-1+\cos{2\phi}}\right)^2}}} \label{dd}
+\end{equation}
+と書ける. $\delta$の値が最大となるのは, 分母の括弧の中の値が最大のときである. ここで, $a=6.4\times10^6$ m, $\Omega=7.3\times10^{-5} \rm{s}^{-1}$, $g^*=9.8 \rm{ms}^{-2}$とすると, $2g^*/\Omega^2a-1$は正の値だと分かる. そこで, cを正の定数として$c=(2g^*/\Omega^2a)-1$, $x=2\phi$ ($0\leq{x}\leq\pi$)とおき, 関数
+\begin{equation}
+  f(x)=\frac{\sin{x}}{c+\cos{x}}
+\end{equation}
+について考える. この関数は,
+\begin{equation}
+  f'(x)=\frac{c\cos{x}}{(c+\cos{x})^2}
+\end{equation}
+より, $x=\pi/2$のとき, $f'(x)=0$である. $f(0)=f(\pi)=0$, $f(\pi/2)=1/c>0$より, $f(x)$は上に凸の関数であり, $x=\pi/2$のとき最大値をとる. よって$\delta$の値が最大となるのは, $\phi=\pi/4$のときである. つまり緯度45度で, ニュートン重力の方向と実効重力の方向の間の角度は最大値をとる\footnote{前述した値で計算した$\delta$の最大値は, $9.9\times10^{-2}$度である.}.\\
+\par
+一方, $\delta=0$となるのは, \eqref{dd}の逆余弦の中身が$1$のときである. つまり,
+\begin{equation}
+  \sin{2\phi}=0
+\end{equation}
+のときである. よって緯度0度, 90度で, $\delta$はゼロである.
+
+\end{document}
+
